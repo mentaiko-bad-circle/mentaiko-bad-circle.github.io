@@ -4,6 +4,7 @@
 - Shell: bash (not PowerShell) — use `$LOCALAPPDATA` not `$env:LOCALAPPDATA`
 - gh CLI: `"$LOCALAPPDATA/gh-cli/bin/gh.exe"` (not in PATH)
 - netlify-cli: installed globally via npm, available as `netlify`
+- make: NOT available on Windows — use `bash deploy.sh` instead
 
 ## Deploy
 - Netlify サイト: https://mentaiko-bad-circle.netlify.app
@@ -14,7 +15,8 @@
 
 ## Workflow（日程を更新するとき）
 1. `data/schedule.js` を編集
-2. `git add -A && git commit -m "Update schedule" && git push`（自動デプロイ）
+2. `bash deploy.sh "Update schedule"`（自動デプロイ）
+   または `deploy.bat` をダブルクリック、VS Code: `Ctrl+Shift+P` → `Tasks: Run Task` → `Deploy`
 
 ## Project Structure
 - `index.html` — メインHTML（CSS/JSは外部ファイル参照）
@@ -22,6 +24,9 @@
 - `css/style.css` — styles
 - `js/main.js` — all JavaScript logic
 - `.netlify/` — Netlify サイトID保存（削除しないこと）
+- `deploy.sh` — デプロイスクリプト（bash用）: `bash deploy.sh "msg"`
+- `deploy.bat` — デプロイスクリプト（ダブルクリック用）
+- `.vscode/tasks.json` — VS Code Deploy タスク
 
 ## Gotchas
 - winget: never run multiple instances simultaneously (causes 1618 lock error)
