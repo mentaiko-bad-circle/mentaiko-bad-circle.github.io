@@ -6,14 +6,24 @@
 - netlify-cli: installed globally via npm, available as `netlify`
 
 ## Deploy
-- Netlify: `netlify deploy --prod --dir=.`
-- GitHub: `git push` (run `"$LOCALAPPDATA/gh-cli/bin/gh.exe" auth setup-git` if push fails)
+- Netlify (本番): `netlify deploy --prod --dir=.`
+- Netlify サイト: https://mentaiko-bad-circle.netlify.app
+- GitHub: `git add -A && git commit -m "msg" && git push`
+- GitHub push 失敗時: `"$LOCALAPPDATA/gh-cli/bin/gh.exe" auth setup-git` を実行してから再push
+
+## Workflow（日程を更新するとき）
+1. `data/schedule.js` を編集
+2. `netlify deploy --prod --dir=.`（即反映）
+3. 必要なら `git add -A && git commit -m "Update schedule" && git push`
 
 ## Project Structure
+- `index.html` — メインHTML（CSS/JSは外部ファイル参照）
 - `data/schedule.js` — schedule config, edit here to update dates
 - `css/style.css` — styles
 - `js/main.js` — all JavaScript logic
+- `.netlify/` — Netlify サイトID保存（削除しないこと）
 
 ## Gotchas
 - winget: never run multiple instances simultaneously (causes 1618 lock error)
 - gh auth: after switching accounts, run `auth setup-git` before git push
+- GitHub Pages と Netlify の両方が有効。本番は Netlify を使用
