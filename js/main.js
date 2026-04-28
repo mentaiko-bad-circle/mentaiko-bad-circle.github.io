@@ -50,7 +50,9 @@ function renderSchedule(filterArea) {
         </div>
         <div class="schedule-right">
           <span class="schedule-time">${s.time}</span>
-          <span class="schedule-venue">${s.venue}</span>
+          ${(typeof VENUE_MAPS !== 'undefined' && VENUE_MAPS[s.venue])
+              ? `<a class="schedule-venue venue-link" href="${VENUE_MAPS[s.venue]}" target="_blank" rel="noopener">${s.venue} 📍</a>`
+              : `<span class="schedule-venue">${s.venue}</span>`}
         </div>
       </div>`;
   }).join('');

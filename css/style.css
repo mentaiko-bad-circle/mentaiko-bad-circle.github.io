@@ -179,6 +179,8 @@ section  { padding: 88px 0; }
 .schedule-right { text-align: right; flex-shrink: 0; }
 .schedule-time  { font-size: 0.9rem; font-weight: 600; display: block; }
 .schedule-venue { font-size: 0.74rem; color: var(--sub); display: block; margin-top: 3px; }
+a.venue-link { color: var(--accent); text-decoration: none; }
+a.venue-link:hover { text-decoration: underline; }
 
 /* ── Details ────────────────────────────────────────────── */
 #details { background: var(--surface); }
