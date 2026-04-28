@@ -43,7 +43,7 @@ function renderSchedule(filterArea) {
     const isPast = parseDate(s.date) < today;
     const areaClass = s.area === '京都' ? 'kyoto' : 'shiga';
     return `
-      <div class="schedule-item${isPast ? ' past' : ''}">
+      <div class="schedule-item${isPast ? ' past' : ''} area-${areaClass}">
         <div class="schedule-left">
           <span class="area-badge ${areaClass}">${s.area}</span>
           <span class="schedule-day">${label}</span>
