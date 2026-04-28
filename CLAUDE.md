@@ -6,15 +6,15 @@
 - netlify-cli: installed globally via npm, available as `netlify`
 
 ## Deploy
-- Netlify (本番): `netlify deploy --prod --dir=.`
 - Netlify サイト: https://mentaiko-bad-circle.netlify.app
+- GitHub push で Netlify 自動デプロイ（GitHub連携済み、1〜2分で反映）
 - GitHub: `git add -A && git commit -m "msg" && git push`
 - GitHub push 失敗時: `"$LOCALAPPDATA/gh-cli/bin/gh.exe" auth setup-git` を実行してから再push
+- 手動即時デプロイ（緊急時）: `netlify deploy --prod --dir=.`
 
 ## Workflow（日程を更新するとき）
 1. `data/schedule.js` を編集
-2. `netlify deploy --prod --dir=.`（即反映）
-3. 必要なら `git add -A && git commit -m "Update schedule" && git push`
+2. `git add -A && git commit -m "Update schedule" && git push`（自動デプロイ）
 
 ## Project Structure
 - `index.html` — メインHTML（CSS/JSは外部ファイル参照）
