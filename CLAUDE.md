@@ -7,6 +7,7 @@
 - make: NOT available on Windows — use `bash deploy.sh` instead
 
 ## Deploy
+- デプロイはクレジットを消費するため、複数変更はまとめて1回で行う
 - Netlify サイト: https://mentaiko-bad-circle.netlify.app
 - GitHub push で Netlify 自動デプロイ（GitHub連携済み、1〜2分で反映）
 - GitHub: `git add -A && git commit -m "msg" && git push`
@@ -21,6 +22,9 @@
 ## Project Structure
 - `index.html` — メインHTML（CSS/JSは外部ファイル参照）
 - `data/schedule.js` — schedule config, edit here to update dates
+  - `VENUE_MAPS` オブジェクトで会場名→Google Maps URL を管理
+  - 会場正式名称（京都）: `中京地域体育館` `下京地域体育館` `醍醐地域体育館` `右京体育館`
+  - 会場正式名称（滋賀）: `におの浜ふれあいスポーツセンター` `皇子が丘公園体育館` `草津総合体育館` `栗東市民体育館`
 - `css/style.css` — styles
 - `js/main.js` — all JavaScript logic
 - `.netlify/` — Netlify サイトID保存（削除しないこと）

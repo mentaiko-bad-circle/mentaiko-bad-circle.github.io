@@ -24,16 +24,22 @@
 
 const VENUE_MAPS = {
   "中京地域体育館":               "https://maps.google.com/maps?q=中京地域体育館+京都市中京区",
-  "におの浜スポーツふれあいセンター": "https://maps.google.com/maps?q=におの浜スポーツふれあいセンター+大津市",
+  "下京地域体育館":               "https://maps.google.com/maps?q=下京地域体育館+京都市下京区",
+  "醍醐地域体育館":               "https://maps.google.com/maps?q=醍醐地域体育館+京都市伏見区",
+  "右京体育館":                   "https://maps.google.com/maps?q=右京体育館+京都市右京区",
+  "におの浜ふれあいスポーツセンター": "https://maps.google.com/maps?q=におの浜ふれあいスポーツセンター+大津市",
+  "皇子が丘公園体育館":           "https://maps.google.com/maps?q=皇子が丘公園体育館+大津市",
+  "草津総合体育館":               "https://maps.google.com/maps?q=草津総合体育館+草津市",
+  "栗東市民体育館":               "https://maps.google.com/maps?q=栗東市民体育館+栗東市",
 };
 
 const SCHEDULE = [
   // ── 5月 ──────────────────────────────────────────────────────────────────
   { date: "2026-05-04", time: "15:00〜17:00", area: "京都", venue: "中京地域体育館", holiday: true },
   { date: "2026-05-05", time: "13:00〜15:00", area: "京都", venue: "中京地域体育館", holiday: true },
-  { date: "2026-05-09", time: "13:00〜15:00", area: "滋賀", venue: "におの浜スポーツふれあいセンター" },
-  { date: "2026-05-16", time: "17:00〜19:00", area: "滋賀", venue: "におの浜スポーツふれあいセンター" },
-  { date: "2026-05-23", time: "17:00〜19:00", area: "滋賀", venue: "におの浜スポーツふれあいセンター" },
+  { date: "2026-05-09", time: "13:00〜15:00", area: "滋賀", venue: "におの浜ふれあいスポーツセンター" },
+  { date: "2026-05-16", time: "17:00〜19:00", area: "滋賀", venue: "におの浜ふれあいスポーツセンター" },
+  { date: "2026-05-23", time: "17:00〜19:00", area: "滋賀", venue: "におの浜ふれあいスポーツセンター" },
   { date: "2026-05-24", time: "13:00〜15:00", area: "京都", venue: "中京地域体育館" },
   { date: "2026-05-30", time: "15:00〜17:00", area: "京都", venue: "中京地域体育館" },
 
