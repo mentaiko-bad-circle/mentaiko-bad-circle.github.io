@@ -8,11 +8,17 @@
 
 ## Deploy
 - デプロイはクレジットを消費するため、複数変更はまとめて1回で行う
+- ※ 現在Netlify自動デプロイ停止中。再開はNetlifyダッシュボードから
 - Netlify サイト: https://mentaiko-bad-circle.netlify.app
 - GitHub push で Netlify 自動デプロイ（GitHub連携済み、1〜2分で反映）
 - GitHub: `git add -A && git commit -m "msg" && git push`
 - GitHub push 失敗時: `"$LOCALAPPDATA/gh-cli/bin/gh.exe" auth setup-git` を実行してから再push
 - 手動即時デプロイ（緊急時）: `netlify deploy --prod --dir=.`
+
+## Workflow（通常の編集）
+1. VS Code でファイルを編集
+2. bash ターミナルで: `git add -A && git commit -m "変更内容" && git push`
+3. Netlify を再開すれば自動で本番反映
 
 ## Workflow（日程を更新するとき）
 1. `data/schedule.js` を編集
@@ -21,6 +27,8 @@
 
 ## Project Structure
 - `index.html` — メインHTML（CSS/JSは外部ファイル参照）
+  - FAQセクション・OGPメタタグ含む
+- `img/` — OGP・アイコン画像（mentaiko_icon.jpg）
 - `data/schedule.js` — schedule config, edit here to update dates
   - `VENUE_MAPS` オブジェクトで会場名→Google Maps URL を管理
   - 会場正式名称（京都）: `中京地域体育館` `下京地域体育館` `醍醐地域体育館` `右京体育館`
