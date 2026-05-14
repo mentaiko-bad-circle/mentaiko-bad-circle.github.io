@@ -67,7 +67,7 @@ function renderContactDates() {
     .sort((a, b) => a.date.localeCompare(b.date))
     .filter(s => isFutureOrToday(s.date));
 
-  if (future.length === 0) {
+  if (future.length === 0 || !RECRUITMENT_OPEN) {
     container.style.display = 'none';
     noMsg.style.display = 'block';
     return;
@@ -75,14 +75,15 @@ function renderContactDates() {
 
   noMsg.style.display = 'none';
   container.innerHTML = future.map(s => {
-    const label = formatJapaneseDate(s.date, s.holiday);
-    const value = `${label} ${s.time}（${s.area}エリア・${s.venue}）`;
+    const label  = formatJapaneseDate(s.date, s.holiday);
+    const value  = `${label} ${s.time}（${s.area}エリア・${s.venue}）`;
+    const isFull = s.full === true;
     return `
-      <label class="date-checkbox-item">
-        <input type="checkbox" name="date-select" value="${value}" />
+      <label class="date-checkbox-item${isFull ? ' is-full' : ''}">
+        <input type="checkbox" name="date-select" value="${value}"${isFull ? ' disabled' : ''} />
         <div class="checkbox-content">
           <span class="checkbox-label">${label}&nbsp; ${s.time}</span>
-          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}</span>
+          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}${isFull ? ' <span class="full-badge">満員</span>' : ''}</span>
         </div>
       </label>`;
   }).join('');
