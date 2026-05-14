@@ -104,6 +104,7 @@ function handleSubmit(e) {
   e.preventDefault();
 
   const name    = document.getElementById('name').value;
+  const gender  = document.getElementById('gender').value;
   const level   = document.getElementById('level').value;
   const msg     = document.getElementById('message').value;
   const checked = [...document.querySelectorAll('input[name="date-select"]:checked')]
@@ -113,6 +114,7 @@ function handleSubmit(e) {
 
   const body = [
     'お名前: ' + name,
+    '性別: '   + gender,
     '経験: '  + level,
     '',
     '希望日程:',
