@@ -310,14 +310,7 @@ a.venue-link:hover { text-decoration: underline; }
   border-color: var(--accent);
   background: var(--accent-dim);
 }
-.date-checkbox-item.is-waitlist {
-  border-color: #f59e0b;
-  background: #fffbeb;
-}
-.date-checkbox-item.is-waitlist:has(input:checked) {
-  border-color: #f59e0b;
-  background: #fef3c7;
-}
+
 .full-badge, .waitlist-badge {
   display: inline-block;
   color: #fff;

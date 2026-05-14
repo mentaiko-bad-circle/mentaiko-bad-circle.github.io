@@ -87,7 +87,7 @@ function renderContactDates() {
         <input type="checkbox" name="date-select" value="${value}" />
         <div class="checkbox-content">
           <span class="checkbox-label">${label}&nbsp; ${s.time}</span>
-          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}${isFull ? ' <span class="waitlist-badge">キャンセル待ち</span>' : ''}</span>
+          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}${isFull ? ' <span class="waitlist-badge">満員：キャンセル待ち可</span>' : ''}</span>
         </div>
       </label>`;
   }).join('');
