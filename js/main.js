@@ -41,11 +41,13 @@ function renderSchedule(filterArea) {
   list.innerHTML = items.map(s => {
     const label  = formatJapaneseDate(s.date, s.holiday);
     const isPast = parseDate(s.date) < today;
+    const isFull = s.full === true;
     const areaClass = s.area === '京都' ? 'kyoto' : 'shiga';
     return `
       <div class="schedule-item${isPast ? ' past' : ''} area-${areaClass}">
         <div class="schedule-left">
           <span class="area-badge ${areaClass}">${s.area}</span>
+          ${isFull ? '<span class="full-badge">満員</span>' : ''}
           <span class="schedule-day">${label}</span>
         </div>
         <div class="schedule-right">
@@ -76,14 +78,16 @@ function renderContactDates() {
   noMsg.style.display = 'none';
   container.innerHTML = future.map(s => {
     const label  = formatJapaneseDate(s.date, s.holiday);
-    const value  = `${label} ${s.time}（${s.area}エリア・${s.venue}）`;
     const isFull = s.full === true;
+    const value  = isFull
+      ? `${label} ${s.time}（${s.area}エリア・${s.venue}）※キャンセル待ち`
+      : `${label} ${s.time}（${s.area}エリア・${s.venue}）`;
     return `
-      <label class="date-checkbox-item${isFull ? ' is-full' : ''}">
-        <input type="checkbox" name="date-select" value="${value}"${isFull ? ' disabled' : ''} />
+      <label class="date-checkbox-item${isFull ? ' is-waitlist' : ''}">
+        <input type="checkbox" name="date-select" value="${value}" />
         <div class="checkbox-content">
           <span class="checkbox-label">${label}&nbsp; ${s.time}</span>
-          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}${isFull ? ' <span class="full-badge">満員</span>' : ''}</span>
+          <span class="checkbox-sub">${s.area}エリア &middot; ${s.venue}${isFull ? ' <span class="waitlist-badge">キャンセル待ち</span>' : ''}</span>
         </div>
       </label>`;
   }).join('');
