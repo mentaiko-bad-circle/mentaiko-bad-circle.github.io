@@ -104,6 +104,44 @@ function initTabs() {
   });
 }
 
+// ── 同行者フィールド動的生成 ──────────────────────────────────────────────
+function initCompanions() {
+  document.getElementById('companions').addEventListener('change', function () {
+    const count     = parseInt(this.value);
+    const container = document.getElementById('companion-names');
+    container.innerHTML = '';
+    for (let i = 1; i <= count; i++) {
+      const card = document.createElement('div');
+      card.className = 'companion-card';
+      card.innerHTML = `
+        <div class="companion-card-header">同行者 ${i}</div>
+        <div class="form-group">
+          <label for="companion-name-${i}">お名前</label>
+          <input type="text" id="companion-name-${i}" placeholder="山田 花子" required />
+        </div>
+        <div class="companion-row">
+          <div class="form-group">
+            <label for="companion-gender-${i}">性別</label>
+            <select id="companion-gender-${i}">
+              <option value="男性">男性</option>
+              <option value="女性">女性</option>
+              <option value="その他・回答しない">その他・回答しない</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="companion-level-${i}">経験</label>
+            <select id="companion-level-${i}">
+              <option>初心者（ほぼ未経験）</option>
+              <option>ブランクあり</option>
+              <option>経験者</option>
+            </select>
+          </div>
+        </div>`;
+      container.appendChild(card);
+    }
+  });
+}
+
 // ── フォーム送信（mailto）────────────────────────────────────────────────
 function handleSubmit(e) {
   e.preventDefault();
@@ -117,10 +155,25 @@ function handleSubmit(e) {
 
   const dateLines = checked.length > 0 ? checked.join('\n') : '  （未選択）';
 
+  const companionCount = parseInt(document.getElementById('companions').value);
+  let companionLines = '同行者: ';
+  if (companionCount === 0) {
+    companionLines += 'なし';
+  } else {
+    companionLines += companionCount + '名';
+    for (let i = 1; i <= companionCount; i++) {
+      const cName   = document.getElementById('companion-name-' + i).value.trim();
+      const cGender = document.getElementById('companion-gender-' + i).value;
+      const cLevel  = document.getElementById('companion-level-' + i).value;
+      companionLines += '\n  ・同行者' + i + ': ' + cName + '（' + cGender + '・' + cLevel + '）';
+    }
+  }
+
   const body = [
     'お名前: ' + name,
     '性別: '   + gender,
-    '経験: '  + level,
+    '経験: '   + level,
+    companionLines,
     '',
     '希望日程:',
     dateLines,
@@ -162,5 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderContactDates();
   initTabs();
   initFadeIn();
+  initCompanions();
   document.getElementById('contact-form').addEventListener('submit', handleSubmit);
 });

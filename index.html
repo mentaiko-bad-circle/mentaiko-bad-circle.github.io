@@ -170,19 +170,48 @@
       </p>
 
       <form id="contact-form">
-        <div class="form-group">
-          <label for="name">お名前</label>
-          <input type="text" id="name" name="name" placeholder="山田 太郎" required />
+        <div class="companion-card" style="margin-bottom: 20px;">
+          <div class="companion-card-header">参加者</div>
+          <div class="form-group">
+            <label for="name">お名前</label>
+            <input type="text" id="name" name="name" placeholder="山田 太郎" required />
+          </div>
+          <div class="companion-row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="gender">性別</label>
+              <select id="gender" name="gender">
+                <option value="男性">男性</option>
+                <option value="女性">女性</option>
+                <option value="その他・回答しない">その他・回答しない</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="level">バドミントン経験</label>
+              <select id="level" name="level">
+                <option>初心者（ほぼ未経験）</option>
+                <option>ブランクあり</option>
+                <option>経験者</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="gender">性別</label>
-          <select id="gender" name="gender">
-            <option value="男性">男性</option>
-            <option value="女性">女性</option>
-            <option value="その他・回答しない">その他・回答しない</option>
+          <label for="companions">同行者</label>
+          <select id="companions" name="companions">
+            <option value="0">なし（1人で参加）</option>
+            <option value="1">1名</option>
+            <option value="2">2名</option>
+            <option value="3">3名</option>
+            <option value="4">4名</option>
+            <option value="5">5名</option>
+            <option value="6">6名</option>
+            <option value="7">7名</option>
+            <option value="8">8名</option>
           </select>
         </div>
+
+        <div id="companion-names"></div>
 
         <div class="form-group">
           <label>希望日程（複数選択可）</label>
@@ -190,15 +219,6 @@
           <p id="no-dates-msg" style="display:none; font-size:0.85rem; color:var(--sub); padding:8px 0;">
             現在募集中の日程はありません。
           </p>
-        </div>
-
-        <div class="form-group">
-          <label for="level">バドミントン経験</label>
-          <select id="level" name="level">
-            <option>初心者（ほぼ未経験）</option>
-            <option>ブランクあり</option>
-            <option>経験者</option>
-          </select>
         </div>
 
         <div class="form-group">
