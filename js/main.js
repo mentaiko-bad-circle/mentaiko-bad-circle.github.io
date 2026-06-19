@@ -209,6 +209,43 @@ function initFadeIn() {
   document.querySelectorAll('#hero .fade').forEach(el => el.classList.add('visible'));
 }
 
+// ── 構造化データ(JSON-LD) ──────────────────────────────────────────────────
+function injectEventJsonLd() {
+  const future = [...SCHEDULE]
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .filter(s => isFutureOrToday(s.date))
+    .slice(0, 10);
+
+  if (future.length === 0) return;
+
+  const events = future.map(s => {
+    const startTime = s.time.split('〜')[0];
+    return {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": `めんたいこ バドミントン練習会（${s.area}）`,
+      "startDate": `${s.date}T${startTime}:00+09:00`,
+      "location": {
+        "@type": "Place",
+        "name": s.venue,
+        "address": s.area === '京都' ? '京都府' : '滋賀県'
+      },
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": "めんたいこ",
+        "url": "https://mentaiko-bad-circle.netlify.app/"
+      },
+      "eventStatus": s.full ? "https://schema.org/EventScheduled" : "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode"
+    };
+  });
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(events.length === 1 ? events[0] : events);
+  document.head.appendChild(script);
+}
+
 // ── 初期化 ────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderSchedule('all');
@@ -216,5 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initFadeIn();
   initCompanions();
+  injectEventJsonLd();
   document.getElementById('contact-form').addEventListener('submit', handleSubmit);
 });
