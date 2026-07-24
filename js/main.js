@@ -220,7 +220,9 @@ function handleSubmit(e) {
       '<p style="color:#e74c3c; font-weight:700; margin-bottom:12px;">⚠️ 送信に失敗しました</p>' +
       '<p style="font-size:0.9em; color:#555; line-height:1.8;">お手数ですが、下のボタンからメールをお送りください。<br>' +
       '送信者: <strong>' + email + '</strong></p>' +
-      '<a href="' + mailtoLink + '" style="display:inline-block; margin-top:8px; padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; text-decoration:none; font-weight:700;">メールで送り直す</a>';
+      '<a href="' + mailtoLink + '" style="display:inline-block; margin-top:8px; padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; text-decoration:none; font-weight:700;">メールで送り直す</a>' +
+      '<p style="font-size:0.85em; color:#888; margin-top:12px;">または直接メールをお送りください：<br>' +
+      '<a href="mailto:mentaiko.circle@gmail.com" style="color:var(--accent);">mentaiko.circle@gmail.com</a></p>';
   });
 }
 
