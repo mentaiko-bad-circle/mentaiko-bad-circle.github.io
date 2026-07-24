@@ -142,7 +142,7 @@ function initCompanions() {
   });
 }
 
-// ── フォーム送信（FormSubmit AJAX）───────────────────────────────────────
+// ── フォーム送信（FormSubmit POST）───────────────────────────────────────
 function handleSubmit(e) {
   e.preventDefault();
 
@@ -174,7 +174,7 @@ function handleSubmit(e) {
     'お名前: '         + name,
     'メールアドレス: ' + email,
     '性別: '           + gender,
-    '経験: '   + level,
+    '経験: '           + level,
     companionLines,
     '',
     '希望日程:',
@@ -184,42 +184,11 @@ function handleSubmit(e) {
     msg,
   ].join('\n');
 
-  const btn = document.querySelector('.submit-btn');
-  btn.disabled = true;
-  btn.textContent = '送信中...';
+  document.getElementById('hidden-subject').value = '【めんたいこ】参加希望：' + name;
+  document.getElementById('hidden-replyto').value = email;
+  document.getElementById('hidden-message').value = body;
 
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('message', body);
-  formData.append('_subject', '【めんたいこ】参加希望：' + name);
-  formData.append('_replyto', email);
-  formData.append('_captcha', 'false');
-  formData.append('_template', 'basic');
-
-  fetch('https://formsubmit.co/ajax/mentaiko.circle@gmail.com', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: formData,
-  })
-  .then(res => res.json())
-  .then(() => {
-    document.getElementById('contact-form').style.display = 'none';
-    const sentDiv = document.getElementById('form-sent');
-    sentDiv.style.display = 'block';
-    sentDiv.innerHTML =
-      '<p style="color:var(--accent); font-weight:700; margin-bottom:12px;">✅ 送信完了しました！</p>' +
-      '<p style="font-size:0.9em; color:#555;">メッセージを受け付けました。<br>確認次第ご連絡いたします。</p>';
-  })
-  .catch(() => {
-    btn.disabled = false;
-    btn.textContent = 'メッセージを送る ✉️';
-    const sentDiv = document.getElementById('form-sent');
-    sentDiv.style.display = 'block';
-    sentDiv.innerHTML =
-      '<p style="color:#e74c3c; font-weight:700; margin-bottom:12px;">⚠️ 送信に失敗しました</p>' +
-      '<p style="font-size:0.9em; color:#555; line-height:1.8;">お手数ですが、直接メールをお送りください。<br>' +
-      '📧 <a href="mailto:mentaiko.circle@gmail.com" style="color:var(--accent);">mentaiko.circle@gmail.com</a></p>';
-  });
+  document.getElementById('contact-form').submit();
 }
 
 // ── フェードイン（IntersectionObserver）──────────────────────────────────
@@ -287,4 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initCompanions();
   injectEventJsonLd();
   document.getElementById('contact-form').addEventListener('submit', handleSubmit);
+
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    document.getElementById('contact-form').style.display = 'none';
+    const sentDiv = document.getElementById('form-sent');
+    sentDiv.style.display = 'block';
+    sentDiv.innerHTML =
+      '<p style="color:var(--accent); font-weight:700; margin-bottom:12px;">✅ 送信完了しました！</p>' +
+      '<p style="font-size:0.9em; color:#555;">メッセージを受け付けました。<br>確認次第ご連絡いたします。</p>';
+  }
 });
