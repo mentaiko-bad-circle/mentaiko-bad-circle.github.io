@@ -142,7 +142,7 @@ function initCompanions() {
   });
 }
 
-// ── フォーム送信（mailto）────────────────────────────────────────────────
+// ── フォーム送信（FormSubmit AJAX）───────────────────────────────────────
 function handleSubmit(e) {
   e.preventDefault();
 
@@ -182,12 +182,40 @@ function handleSubmit(e) {
     msg,
   ].join('\n');
 
-  window.location.href =
-    'mailto:mentaiko.circle@gmail.com'
-    + '?subject=' + encodeURIComponent('【めんたいこ】参加希望：' + name)
-    + '&body='    + encodeURIComponent(body);
+  const btn = document.querySelector('.submit-btn');
+  btn.disabled = true;
+  btn.textContent = '送信中...';
 
-  document.getElementById('form-sent').style.display = 'block';
+  fetch('https://formsubmit.co/ajax/mentaiko.circle@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      message: body,
+      _subject: '【めんたいこ】参加希望：' + name,
+      _captcha: 'false',
+      _template: 'basic',
+    }),
+  })
+  .then(res => res.json())
+  .then(() => {
+    document.getElementById('contact-form').style.display = 'none';
+    const sentDiv = document.getElementById('form-sent');
+    sentDiv.style.display = 'block';
+    sentDiv.innerHTML =
+      '<p style="color:var(--accent); font-weight:700; margin-bottom:12px;">✅ 送信完了しました！</p>' +
+      '<p style="font-size:0.9em; color:#555;">メッセージを受け付けました。<br>確認次第ご連絡いたします。</p>';
+  })
+  .catch(() => {
+    btn.disabled = false;
+    btn.textContent = 'メッセージを送る ✉️';
+    const sentDiv = document.getElementById('form-sent');
+    sentDiv.style.display = 'block';
+    sentDiv.innerHTML =
+      '<p style="color:#e74c3c; font-weight:700; margin-bottom:12px;">⚠️ 送信に失敗しました</p>' +
+      '<p style="font-size:0.9em; color:#555; line-height:1.8;">お手数ですが、直接メールをお送りください。<br>' +
+      '📧 <a href="mailto:mentaiko.circle@gmail.com" style="color:var(--accent);">mentaiko.circle@gmail.com</a></p>';
+  });
 }
 
 // ── フェードイン（IntersectionObserver）──────────────────────────────────
