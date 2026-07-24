@@ -245,14 +245,7 @@
         お気軽にメッセージをどうぞ！
       </p>
 
-      <form id="contact-form" action="https://formsubmit.co/mentaiko.circle@gmail.com" method="POST">
-        <input type="hidden" name="_subject"  id="hidden-subject">
-        <input type="hidden" name="_replyto"  id="hidden-replyto">
-        <input type="hidden" name="message"   id="hidden-message">
-        <input type="hidden" name="_captcha"  value="false">
-        <input type="hidden" name="_template" value="basic">
-        <input type="hidden" name="_next"     value="https://mentaiko-bad-circle.netlify.app/?sent=1#contact">
-
+      <form id="contact-form">
         <div class="companion-card" style="margin-bottom: 20px;">
           <div class="companion-card-header">参加者</div>
           <div class="form-group">
@@ -262,7 +255,7 @@
           <div class="companion-row">
             <div class="form-group" style="margin-bottom: 0;">
               <label for="gender">性別</label>
-              <select id="gender">
+              <select id="gender" name="gender">
                 <option value="男性">男性</option>
                 <option value="女性">女性</option>
                 <option value="その他・回答しない">その他・回答しない</option>
@@ -270,7 +263,7 @@
             </div>
             <div class="form-group" style="margin-bottom: 0;">
               <label for="level">バドミントン経験</label>
-              <select id="level">
+              <select id="level" name="level">
                 <option>初心者（ほぼ未経験）</option>
                 <option>ブランクあり</option>
                 <option>経験者</option>
@@ -279,13 +272,13 @@
           </div>
           <div class="form-group" style="margin-top: 12px; margin-bottom: 0;">
             <label for="email">メールアドレス</label>
-            <input type="email" id="email" placeholder="example@gmail.com" required />
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required />
           </div>
         </div>
 
         <div class="form-group">
           <label for="companions">同行者</label>
-          <select id="companions">
+          <select id="companions" name="companions">
             <option value="0">なし（1人で参加）</option>
             <option value="1">1名</option>
             <option value="2">2名</option>
@@ -310,7 +303,7 @@
 
         <div class="form-group">
           <label for="message">メッセージ・ご質問</label>
-          <textarea id="message" placeholder="気軽に何でもどうぞ！"></textarea>
+          <textarea id="message" name="message" placeholder="気軽に何でもどうぞ！"></textarea>
         </div>
 
         <button type="submit" class="submit-btn">メッセージを送る ✉️</button>
