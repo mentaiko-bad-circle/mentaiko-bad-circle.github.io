@@ -147,6 +147,7 @@ function handleSubmit(e) {
   e.preventDefault();
 
   const name    = document.getElementById('name').value;
+  const email   = document.getElementById('email').value;
   const gender  = document.getElementById('gender').value;
   const level   = document.getElementById('level').value;
   const msg     = document.getElementById('message').value;
@@ -170,8 +171,9 @@ function handleSubmit(e) {
   }
 
   const body = [
-    'お名前: ' + name,
-    '性別: '   + gender,
+    'お名前: '         + name,
+    'メールアドレス: ' + email,
+    '性別: '           + gender,
     '経験: '   + level,
     companionLines,
     '',
@@ -193,6 +195,7 @@ function handleSubmit(e) {
       name: name,
       message: body,
       _subject: '【めんたいこ】参加希望：' + name,
+      _replyto: email,
       _captcha: 'false',
       _template: 'basic',
     }),
