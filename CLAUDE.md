@@ -28,6 +28,10 @@
 ## Project Structure
 - `index.html` — メインHTML（CSS/JSは外部ファイル参照）
   - FAQセクション・OGPメタタグ含む
+  - SEO対応済み: meta description/keywords/canonical/robots、JSON-LD構造化データ（SportsOrganization + FAQPage）
+- `manual.html` — 運用マニュアル（`<meta name="robots" content="noindex, follow">` 設定済み、検索結果に出さない方針）
+- `robots.txt` / `sitemap.xml` — SEO用。sitemap.xmlはトップページのみ掲載
+- `google6b62d86e04816dee.html` — Google Search Console所有権確認ファイル。**削除しないこと**。内容は `google-site-verification: google6b62d86e04816dee.html`（末尾`.html`を含むのが正しい内容、誤りに見えるが修正しないこと）
 - `img/` — OGP・アイコン画像（mentaiko_icon.jpg）
 - `data/schedule.js` — schedule config, edit here to update dates
   - `VENUE_MAPS` オブジェクトで会場名→Google Maps URL を管理
