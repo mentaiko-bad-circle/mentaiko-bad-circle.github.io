@@ -188,17 +188,16 @@ function handleSubmit(e) {
   btn.disabled = true;
   btn.textContent = '送信中...';
 
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('message', body);
-  formData.append('_subject', '【めんたいこ】参加希望：' + name);
-  formData.append('_captcha', 'false');
-  formData.append('_template', 'basic');
-
   fetch('https://formsubmit.co/ajax/mentaiko.circle@gmail.com', {
     method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: formData,
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      message: body,
+      _subject: '【めんたいこ】参加希望：' + name,
+      _captcha: 'false',
+      _template: 'basic',
+    }),
   })
   .then(res => res.json())
   .then(() => {
